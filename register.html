@@ -2,48 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>📚Register - Knowledge Finders</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📚 Register - Knowledge Finders</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: Arial, sans-serif;
       background: #f0f8ff;
       margin: 0;
     }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     header, footer {
       background-color: #006699;
       color: white;
       text-align: center;
-      padding: 1em;
+      padding: 1em 0;
     }
     nav a {
-      margin: 0 15px;
+      margin: 0 10px;
       text-decoration: none;
       color: white;
       font-weight: bold;
+      transition: 0.3s;
     }
+    nav a:hover {
+      text-shadow: 0 0 8px rgba(255,255,255,0.6);
+    }
+
     main {
-      padding: 20px;
-      max-width: 500px;
+      padding: 30px 20px;
+      max-width: 400px;
       margin: auto;
       background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      opacity: 0;
+      animation: slideUp 0.7s ease-out 0.2s forwards;
     }
+
     input {
       width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 5px;
+      padding: 14px;
+      margin: 12px 0;
       border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: 0.3s;
     }
+    input:focus {
+      border-color: #006699;
+      box-shadow: 0 0 8px rgba(0,102,153,0.2);
+      outline: none;
+    }
+
     button {
       width: 100%;
-      padding: 12px;
+      padding: 14px;
       background-color: #006699;
       color: white;
       border: none;
-      border-radius: 5px;
-      font-size: 16px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+      opacity: 0;
+      animation: slideUp 0.6s ease-out 0.6s forwards;
+    }
+    button:hover {
+      background-color: #005588;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    button:active {
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -57,21 +97,18 @@
       <a href="profile.html">Profile</a>
     </nav>
   </header>
-
   <main>
-    <form id="registerForm" onsubmit="validateForm(event)">
-      <input type="text" id="name" placeholder="Full Name" />
-      <input type="email" id="email" placeholder="Email" />
-      <input type="password" id="password" placeholder="Password" />
-      <input type="password" id="confirmPassword" placeholder="Confirm Password" />
+    <form id="registerForm" novalidate>
+      <input type="text" id="name" placeholder="Full Name" required />
+      <input type="email" id="email" placeholder="Email Address" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
       <button type="submit">Register</button>
     </form>
   </main>
-
   <footer>
-    <p>&copy; 2025 Knowledge Finders</p>
+    <p>&copy; 2025 Knowledge Finders. All rights reserved.</p>
   </footer>
-
   <script>
     function validateForm(event) {
       event.preventDefault();
@@ -85,14 +122,27 @@
         return;
       }
 
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+
       if (password !== confirm) {
         alert("Passwords do not match.");
+        return;
+      }
+
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters.");
         return;
       }
 
       alert("Registered successfully!");
       document.getElementById('registerForm').reset();
     }
+
+    document.getElementById('registerForm').addEventListener('submit', validateForm);
   </script>
 </body>
 </html>
