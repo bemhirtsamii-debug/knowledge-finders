@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>📚Education - Knowledge Finders</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      margin: 0;
+    }
+    header, footer {
+      background-color: #006699;
+      color: white;
+      text-align: center;
+      padding: 1em;
+    }
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+    h2 {
+      color: #006699;
+      text-align: center;
+    }
+    .books-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .book-card {
+      background-color: #ffffff;
+      border: 2px solid #e0f0ff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .book-card:hover {
+      transform: scale(1.03);
+    }
+    .book-card a {
+      text-decoration: none;
+      color: #006699;
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Education Resources</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="education.html">Education</a>
+      <a href="register.html">Register</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Grade 10 Books</h2>
+    <div class="books-container">
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/amharic" target="_blank">📘 Amharic</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/biology" target="_blank">🔬 Biology</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/chemistrycitizenship-education" target="_blank">🧪 Chemistry / Civics</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/economics" target="_blank">💰 Economics</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/english" target="_blank">📕 English</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/geography" target="_blank">🌍 Geography</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/health-and%20physical-education" target="_blank">🏃 Health & PE</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/history" target="_blank">📜 History</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/ict" target="_blank">💻 ICT</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/mathematics" target="_blank">➗ Math</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/physics" target="_blank">⚛️ Physics</a></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Knowledge Finders. All rights reserved.</p>
+  </footer>
+</body>
+</html>

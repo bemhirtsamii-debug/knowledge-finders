@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - Knowledge Finders</title>
+  <style>
+    body { background-color: #f0f8ff; font-family: Arial, sans-serif; margin: 0; }
+    header { background-color: #006699; color: white; text-align: center; padding: 20px; }
+    nav { background-color: #004d66; overflow: hidden; }
+    nav a { float: left; color: white; padding: 14px 20px; text-decoration: none; display: block; }
+    nav a:hover { background-color: #003344; }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 { color: #006699; text-align: center; }
+    .profile-item { margin-bottom: 15px; }
+    .profile-item strong { color: #333; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Student Profile</h1>
+    <p>Your learning info and knowledge record</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="education.html">Education</a>
+    <a href="register.html">Register</a>
+    <a href="profile.html">Profile</a>
+  </nav>
+
+  <div class="container">
+    <h2>Welcome, <span id="profileName"></span></h2>
+    <div class="profile-item"><strong>Email:</strong> <span id="profileEmail"></span></div>
+    <div class="profile-item"><strong>Age:</strong> <span id="profileAge"></span></div>
+    <div class="profile-item"><strong>Grade Level:</strong> <span id="profileGrade"></span></div>
+    <div class="profile-item"><strong>General Knowledge Points:</strong> <span id="points">--</span></div>
+    <div class="profile-item"><strong>Saved Books:</strong> <span id="books">(Coming soon)</span></div>
+    <div class="profile-item"><strong>Student's Writings:</strong> <span id="writing">(Coming soon)</span></div>
+  </div>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem('knowledgeFinderUser'));
+    if (user) {
+      document.getElementById('profileName').innerText = user.name;
+      document.getElementById('profileEmail').innerText = user.email;
+      document.getElementById('profileAge').innerText = user.age;
+      document.getElementById('profileGrade').innerText = user.grade;
+      document.getElementById('points').innerText = '0';
+    } else {
+      document.querySelector('.container').innerHTML = '<p style="text-align:center">No profile data found. Please register first.</p>';
+    }
+  </script>
+</body>
+</html>
