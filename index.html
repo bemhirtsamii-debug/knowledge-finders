@@ -7,67 +7,45 @@
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f0f8ff;
+      font-family: Arial, sans-serif;
       margin: 0;
-      line-height: 1.6;
+      background-image: url('bookshelf.jpg'); /* Add the image URL here */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #fff;
     }
-
-    /* Fade-in Animation */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .fade-in {
-      animation: fadeIn 0.8s ease-out forwards;
-    }
-
     header, footer {
-      background-color: #006699;
+      background-color: rgba(0, 102, 153, 0.8); /* Semi-transparent overlay */
       color: white;
       text-align: center;
-      padding: 1em 0;
+      padding: 1em;
     }
     nav a {
-      margin: 0 12px;
+      margin: 0 15px;
       text-decoration: none;
       color: white;
       font-weight: bold;
-      transition: transform 0.2s, text-shadow 0.2s;
     }
-    nav a:hover {
-      transform: scale(1.05);
-      text-shadow: 0 0 5px rgba(255,255,255,0.5);
-    }
-
     main {
-      padding: 40px 20px;
+      padding: 40px;
       text-align: center;
+      background-color: rgba(255, 255, 255, 0.9); /* Light overlay for readability */
+      max-width: 600px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     h2 {
       color: #006699;
-      font-size: 1.6rem;
-      opacity: 0;
     }
-    p {
-      opacity: 0;
-      font-size: 1.1rem;
-    }
-
-    /* Staggered Animation */
-    h2, p {
-      animation: fadeIn 0.8s ease-out forwards;
-    }
-    h2 { animation-delay: 0.2s; }
-    p { animation-delay: 0.5s; }
   </style>
 </head>
 <body>
-  <header class="fade-in">
+  <header>
     <h1>Welcome to Knowledge Finders</h1>
     <nav>
       <a href="index.html">Home</a>

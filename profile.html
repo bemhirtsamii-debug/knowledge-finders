@@ -10,83 +10,49 @@
     }
     body {
       font-family: Arial, sans-serif;
-      background: #f0f8ff;
       margin: 0;
+      background-image: url('bookshelf.jpg'); /* Add the image URL here */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #fff;
     }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
     header, footer {
-      background-color: #006699;
+      background-color: rgba(0, 102, 153, 0.8); /* Semi-transparent overlay */
       color: white;
       text-align: center;
-      padding: 1em 0;
+      padding: 1em;
     }
     nav a {
-      margin: 0 10px;
+      margin: 0 15px;
       text-decoration: none;
       color: white;
       font-weight: bold;
-      transition: 0.3s;
     }
-    nav a:hover {
-      text-shadow: 0 0 8px rgba(255,255,255,0.6);
-    }
-
     main {
-      padding: 30px 20px;
-      max-width: 400px;
+      background-color: rgba(255, 255, 255, 0.9); /* Light overlay for readability */
+      padding: 20px;
+      max-width: 500px;
       margin: auto;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-
     input, textarea {
       width: 100%;
-      padding: 14px;
-      margin: 12px 0;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 5px;
       border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 1rem;
-      animation: fadeInUp 0.6s ease-out forwards;
-      opacity: 0;
     }
-
-    input:nth-of-type(1) { animation-delay: 0.2s; }
-    input:nth-of-type(2) { animation-delay: 0.4s; }
-    textarea { animation-delay: 0.6s; }
-
     button {
       width: 100%;
-      padding: 14px;
+      padding: 12px;
       background-color: #006699;
       color: white;
       border: none;
-      border-radius: 8px;
-      font-size: 1.1rem;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 20px;
-      transition: 0.3s;
-      animation: fadeInUp 0.6s ease-out 0.8s forwards, pulse 2s infinite 2s;
-      opacity: 0;
-    }
-    button:hover {
-      background-color: #005588;
-      transform: translateY(-2px);
-    }
-    button:active {
-      transform: translateY(0);
+      border-radius: 5px;
+      font-size: 16px;
     }
   </style>
 </head>
@@ -101,13 +67,13 @@
     </nav>
   </header>
   <main>
-    <input type="text" id="studentName" placeholder="Full Name" required />
-    <input type="email" id="studentEmail" placeholder="Email Address" required />
-    <textarea id="studentMarks" placeholder="Marks / Notes..." required></textarea>
+    <input type="text" id="studentName" placeholder="Full Name" />
+    <input type="email" id="studentEmail" placeholder="Email Address" />
+    <textarea id="studentMarks" placeholder="Marks / Notes..."></textarea>
     <button onclick="saveProfile()">Save Profile</button>
   </main>
   <footer>
-    <p>&copy; 2025 Knowledge Finders. All rights reserved.</p>
+    <p>&copy; 2025 Knowledge Finders</p>
   </footer>
   <script>
     function loadProfile() {
@@ -115,33 +81,20 @@
       document.getElementById("studentEmail").value = localStorage.getItem("studentEmail") || "";
       document.getElementById("studentMarks").value = localStorage.getItem("studentMarks") || "";
     }
-
     function saveProfile() {
       const name = document.getElementById("studentName").value.trim();
       const email = document.getElementById("studentEmail").value.trim();
       const marks = document.getElementById("studentMarks").value.trim();
-
       if (!name || !email || !marks) {
         alert("Please fill out all fields.");
         return;
       }
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        alert("Please enter a valid email address.");
-        return;
-      }
-
       localStorage.setItem("studentName", name);
       localStorage.setItem("studentEmail", email);
       localStorage.setItem("studentMarks", marks);
       alert("Profile saved successfully!");
-
-      // Stop pulse animation after click
-      document.querySelector("button").style.animation = "fadeInUp 0.6s ease-out 0.8s forwards";
     }
-
-    window.addEventListener("load", loadProfile);
+    window.onload = loadProfile;
   </script>
 </body>
 </html>

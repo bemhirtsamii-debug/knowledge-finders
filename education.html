@@ -10,92 +10,62 @@
     }
     body {
       font-family: Arial, sans-serif;
-      background-color: #f0f8ff;
       margin: 0;
+      background-image: url('bookshelf.jpg'); /* Add the image URL here */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #fff;
     }
-
-    @keyframes popIn {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
     header, footer {
-      background-color: #006699;
+      background-color: rgba(0, 102, 153, 0.8); /* Semi-transparent overlay */
       color: white;
       text-align: center;
-      padding: 1em 0;
+      padding: 1em;
     }
     nav a {
-      margin: 0 12px;
+      margin: 0 15px;
       text-decoration: none;
       color: white;
       font-weight: bold;
-      transition: 0.3s;
     }
-    nav a:hover {
-      color: #fff;
-      text-shadow: 0 0 8px rgba(255,255,255,0.6);
-      transform: scale(1.1);
-    }
-
     h2 {
       color: #006699;
       text-align: center;
-      opacity: 0;
-      animation: fadeIn 0.8s ease-out forwards;
-      animation-delay: 0.2s;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    main {
+      background-color: rgba(255, 255, 255, 0.9); /* Light overlay for readability */
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-
     .books-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
       padding: 20px;
     }
-
     .book-card {
       background-color: #ffffff;
       border: 2px solid #e0f0ff;
-      border-radius: 12px;
-      padding: 14px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
       text-align: center;
-      transition: all 0.3s ease;
-      opacity: 0;
-      transform: translateY(20px);
+      transition: transform 0.2s;
     }
-
-    .book-card:nth-child(1) { animation: popIn 0.4s ease-out 0.3s forwards; }
-    .book-card:nth-child(2) { animation: popIn 0.4s ease-out 0.4s forwards; }
-    .book-card:nth-child(3) { animation: popIn 0.4s ease-out 0.5s forwards; }
-    .book-card:nth-child(4) { animation: popIn 0.4s ease-out 0.6s forwards; }
-    .book-card:nth-child(5) { animation: popIn 0.4s ease-out 0.7s forwards; }
-    .book-card:nth-child(6) { animation: popIn 0.4s ease-out 0.8s forwards; }
-    .book-card:nth-child(7) { animation: popIn 0.4s ease-out 0.9s forwards; }
-    .book-card:nth-child(8) { animation: popIn 0.4s ease-out 1.0s forwards; }
-    .book-card:nth-child(9) { animation: popIn 0.4s ease-out 1.1s forwards; }
-    .book-card:nth-child(10){ animation: popIn 0.4s ease-out 1.2s forwards; }
-    .book-card:nth-child(11){ animation: popIn 0.4s ease-out 1.3s forwards; }
-
     .book-card:hover {
-      transform: scale(1.08) translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-      border-color: #006699;
+      transform: scale(1.03);
     }
-
     .book-card a {
       text-decoration: none;
       color: #006699;
       font-weight: bold;
       display: block;
-    }
-    .book-card a:hover {
-      color: #005588;
-      text-shadow: 0 0 4px rgba(0,102,153,0.3);
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -112,17 +82,17 @@
   <main>
     <h2>Grade 10 Books</h2>
     <div class="books-container">
-      <div class="book-card"><a href="https://fetena.net/books/grade-10/amharic" target="_blank" rel="noopener">📘 Amharic</a></div>
-      <div class="book-card"><a href="https://fetena.net/books/grade-10/biology" target="_blank" rel="noopener">🔬 Biology</a></div>
-      <div class="book-card"><a href="https://fetena.net/books/grade-10/chemistrycitizenship-education" target="_blank" rel="noopener">🧪 Chem/Civics</a></div>
-      <div class="book-card"><a href="https://fetena.net/books/grade-10/economics" target="_blank" rel="noopener">💰 Economics</a></div>
-      <div class="book-card"><a href="https://fetena.net/books/grade-10/english" target="_blank" rel="noopener">📕 English</a></div>
-      <div class="book-card"><a href="https://fetena.net/books/grade-10/geography" target="_blank" rel="noopener">🌍 Geography</a></div>
-      <div class="book-card"><a href="https://fetena.net/books/grade-10/health-and%20physical-education" target="_blank" rel="noopener">🏃 Health & PE</a></div>
-      <div class="book-card"><a href="https://fetena.net/books/grade-10/history" target="_blank" rel="noopener">📜 History</a></div>
-      <div class="book-card"><a href="https://fetena.net/books/grade-10/ict" target="_blank" rel="noopener">💻 ICT</a></div>
-      <div class="book-card"><a href="https://fetena.net/books/grade-10/mathematics" target="_blank" rel="noopener">➗ Math</a></div>
-      <div class="book-card"><a href="https://fetena.net/books/grade-10/physics" target="_blank" rel="noopener">⚛️ Physics</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/amharic" target="_blank">📘 Amharic</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/biology" target="_blank">🔬 Biology</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/chemistrycitizenship-education" target="_blank">🧪 Chemistry / Civics</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/economics" target="_blank">💰 Economics</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/english" target="_blank">📕 English</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/geography" target="_blank">🌍 Geography</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/health-and%20physical-education" target="_blank">🏃 Health & PE</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/history" target="_blank">📜 History</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/ict" target="_blank">💻 ICT</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/mathematics" target="_blank">➗ Math</a></div>
+      <div class="book-card"><a href="https://fetena.net/books/grade-10/physics" target="_blank">⚛️ Physics</a></div>
     </div>
   </main>
   <footer>
