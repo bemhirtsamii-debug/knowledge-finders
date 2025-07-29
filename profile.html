@@ -5,95 +5,152 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>📚 Profile - Knowledge Finders</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       font-family: Arial, sans-serif;
+      background: #f0f8ff;
       margin: 0;
-      background-image: url('bookshelf.jpg'); /* Add the image URL here */
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      color: #fff;
     }
     header, footer {
-      background-color: rgba(0, 102, 153, 0.8); /* Semi-transparent overlay */
+      background-color: #006699;
       color: white;
       text-align: center;
-      padding: 1em;
+      padding: 1em 0;
     }
     nav a {
-      margin: 0 15px;
+      margin: 0 10px;
       text-decoration: none;
       color: white;
       font-weight: bold;
     }
     main {
-      background-color: rgba(255, 255, 255, 0.9); /* Light overlay for readability */
       padding: 20px;
-      max-width: 500px;
+      max-width: 600px;
       margin: auto;
+      background: #fff;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    input, textarea {
+    input, textarea, button {
       width: 100%;
       padding: 12px;
       margin: 10px 0;
       border-radius: 5px;
       border: 1px solid #ccc;
+      font-size: 16px;
     }
     button {
-      width: 100%;
-      padding: 12px;
       background-color: #006699;
       color: white;
       border: none;
-      border-radius: 5px;
-      font-size: 16px;
+      cursor: pointer;
+    }
+    .mark-item {
+      padding: 10px;
+      margin: 5px 0;
+      background: #e6f7ff;
+      border-left: 4px solid #006699;
+    }
+    .rank-box {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #e8f5e8;
+      border-radius: 8px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Student Profile</h1>
+    <h1>Your Student Profile</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="education.html">Education</a>
       <a href="register.html">Register</a>
+      <a href="login.html">Login</a>
       <a href="profile.html">Profile</a>
     </nav>
   </header>
-  <main>
-    <input type="text" id="studentName" placeholder="Full Name" />
-    <input type="email" id="studentEmail" placeholder="Email Address" />
-    <textarea id="studentMarks" placeholder="Marks / Notes..."></textarea>
-    <button onclick="saveProfile()">Save Profile</button>
+
+  <main id="profileContent">
+    <!-- Dynamic Content -->
   </main>
+
   <footer>
-    <p>&copy; 2025 Knowledge Finders</p>
+    <p>&copy; 2025 Knowledge Finders. All rights reserved.</p>
   </footer>
+
   <script>
-    function loadProfile() {
-      document.getElementById("studentName").value = localStorage.getItem("studentName") || "";
-      document.getElementById("studentEmail").value = localStorage.getItem("studentEmail") || "";
-      document.getElementById("studentMarks").value = localStorage.getItem("studentMarks") || "";
+    // Check login status
+    function checkLogin() {
+      const email = localStorage.getItem("user_email");
+      if (!email) {
+        alert("Please log in first.");
+        window.location.href = "login.html";
+      }
     }
-    function saveProfile() {
-      const name = document.getElementById("studentName").value.trim();
-      const email = document.getElementById("studentEmail").value.trim();
-      const marks = document.getElementById("studentMarks").value.trim();
-      if (!name || !email || !marks) {
-        alert("Please fill out all fields.");
+
+    function loadProfile() {
+      checkLogin();
+
+      const name = localStorage.getItem("studentName");
+      const email = localStorage.getItem("studentEmail");
+      const allMarks = JSON.parse(localStorage.getItem("allMarks") || "[]");
+
+      let content = `
+        <h2>Hello, ${name}!</h2>
+        <p><strong>Email:</strong> ${email}</p>
+
+        <h3>Enter Your Mark (e.g., 10/10)</h3>
+        <textarea id="newMark" placeholder="Write your score or note... (e.g., Got 10/10 in Math!)"></textarea>
+        <button onclick="saveNewMark()">Save Mark</button>
+
+        <h3>Your Marks History</h3>
+      `;
+
+      if (allMarks.length === 0) {
+        content += `<p><em>No marks yet. Start adding!</em></p>`;
+      } else {
+        allMarks.forEach((mark, index) => {
+          content += `<div class="mark-item">${mark} <small>(${new Date(mark.timestamp).toLocaleDateString()})</small></div>`;
+        });
+      }
+
+      // Simple Rank Simulation
+      const totalMarks = allMarks.length;
+      let rank = "Beginner";
+      if (totalMarks >= 5) rank = "Intermediate";
+      if (totalMarks >= 10) rank = "Advanced Learner!";
+      if (totalMarks >= 20) rank = "Top Performer 🏆";
+
+      content += `
+        <div class="rank-box">
+          <h3>🎯 Your Rank: ${rank}</h3>
+          <p>You have recorded <strong>${totalMarks}</strong> learning achievements this year.</p>
+        </div>
+      `;
+
+      document.getElementById("profileContent").innerHTML = content;
+    }
+
+    function saveNewMark() {
+      const newMarkText = document.getElementById("newMark").value.trim();
+      if (!newMarkText) {
+        alert("Please enter a mark or note.");
         return;
       }
-      localStorage.setItem("studentName", name);
-      localStorage.setItem("studentEmail", email);
-      localStorage.setItem("studentMarks", marks);
-      alert("Profile saved successfully!");
+
+      const allMarks = JSON.parse(localStorage.getItem("allMarks") || "[]");
+      allMarks.push({
+        text: newMarkText,
+        timestamp: new Date().toISOString()
+      });
+
+      localStorage.setItem("allMarks", JSON.stringify(allMarks));
+      alert("✅ Mark saved!");
+      loadProfile(); // Reload to show new mark
     }
+
     window.onload = loadProfile;
   </script>
 </body>

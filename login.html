@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>📚 Register - Knowledge Finders</title>
+  <title>🔐 Login - Knowledge Finders</title>
   <style>
     * { box-sizing: border-box; }
     body {
@@ -48,26 +48,22 @@
       font-size: 16px;
       cursor: pointer;
     }
-    button:hover { background-color: #005588; }
   </style>
 </head>
 <body>
   <header>
-    <h1>Register</h1>
+    <h1>Login to Your Account</h1>
     <nav>
       <a href="index.html">Home</a>
-      <a href="education.html">Education</a>
       <a href="register.html">Register</a>
       <a href="login.html">Login</a>
-      <a href="profile.html">Profile</a>
     </nav>
   </header>
   <main>
-    <form id="registerForm">
-      <input type="text" id="name" placeholder="Full Name" required />
+    <form id="loginForm">
       <input type="email" id="email" placeholder="Email" required />
       <input type="password" id="password" placeholder="Password" required />
-      <button type="submit">Register</button>
+      <button type="submit">Login</button>
     </form>
   </main>
   <footer>
@@ -75,23 +71,21 @@
   </footer>
 
   <script>
-    document.getElementById("registerForm").addEventListener("submit", function(e) {
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
-      const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
 
-      // Save user (simulate registration)
-      localStorage.setItem("user_email", email);
-      localStorage.setItem("user_password", password); // ⚠️ In real app: NEVER store plain text!
-      localStorage.setItem("studentName", name);
-      localStorage.setItem("studentEmail", email);
-      localStorage.setItem("studentMarks", ""); // Start empty
-      localStorage.setItem("allMarks", JSON.stringify([])); // Store history
+      const savedEmail = localStorage.getItem("user_email");
+      const savedPassword = localStorage.getItem("user_password");
 
-      alert("✅ Registered successfully! Now log in.");
-      window.location.href = "login.html";
+      if (email === savedEmail && password === savedPassword) {
+        alert(`👋 Welcome back, ${localStorage.getItem("studentName")}!`);
+        window.location.href = "profile.html";
+      } else {
+        alert("❌ Incorrect email or password.");
+      }
     });
   </script>
 </body>
